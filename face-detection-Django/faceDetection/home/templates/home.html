@@ -1,0 +1,60 @@
+<html>
+
+<head>
+    <title>Face Detection - Django App</title>
+    <meta charset="utf-8" /> {% load staticfiles %}
+
+    <!-- Link to Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+
+    <style type="text/css">
+        html,
+        body {
+            height: 100%
+        }
+
+        .container-fluid {
+            padding-left: unset;
+            padding-right: unset
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+
+        <nav class="navbar navbar-light bg-dark" style="color: white">
+            <a class="navbar-brand">
+                <img src="{% static 'img/slightly-smiling-face.png' %}" width="30" height="30" class="d-inline-block align-top" alt="Face Detection"> Face Detection
+            </a>
+            {% if video == True %}
+            <form method="POST" class="form-inline my-2 my-lg-0">{% csrf_token %}
+                <input type="submit" name="closeBtn" value="Stop Camera" class="btn btn-secondary my-2 my-sm-0">
+            </form>
+            {% endif %}
+        </nav>
+
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 text-center">
+                    {% if video == True %}
+                    <img src="http://localhost:8000/live-feed" class="img-fluid" width="720" height="540" alt="Live Feed" /> {% else %}
+                    <form method="POST">{% csrf_token %}
+                        <input type="submit" name="mybtn" value="Start Camera" class="btn btn-dark">
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Link to Bootstrap js CDN -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
